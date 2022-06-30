@@ -1,0 +1,129 @@
+body {
+
+    /* 因為是用外部css，所以抓取上一層的圖片路徑前要加../ */
+    background-image: url(../img/bg1.jpeg);
+    margin: 0;
+}
+
+header {
+    height: 90px;
+}
+
+#logo {
+    /* margin設定後如有與下方重疊的圖片，會以html寫code順序最下層壓在最上面 */
+    /* 例如：footer壓main壓logo */
+    /* 而且margin會影響到旁邊的東西，因為margin是指與旁邊的距離 */
+    /* margin-top: 20px; */
+    /* margin-left: 40px; */
+    /* 等於 */
+    /* m20-0-0-40 */
+    /* margin: 20px 0 0 40px; */
+
+    /* 要讓上層圖片浮起來要用position */
+    /* position是指這個東西在整個網頁的定位，不會影響到旁邊的東西 */
+    /* 相對定位 */
+    position: relative;
+    top: 20px;
+    left: 20px;
+
+}
+
+/* #banner{ */
+/* 預設值： */
+/* display: block; */
+/* width: 100px; */
+
+/* } */
+
+/* banner是block的屬性預設w=100% */
+/* 所以設定banner裡的img100%意思就是把img設成跟banner預設一樣 */
+/* 而banner是包在body裡 */
+/* 所以設為banner 100%就是跟著body100%的意思 */
+#banner img {
+    width: 100%;
+}
+
+main {
+    /* 固定高，如果文字多到超過高200px，文字會溢出到footer的空間 */
+    height: 200px;
+    /* 彈性高 如果文字多到超過高200px，main會自動加長，是較有彈性的作法*/
+    /* min-height: 200px; */
+}
+
+footer {
+    background-color: rgba(182, 31, 31, 0.211);
+    padding: 20px 0;
+
+}
+
+/* 橫向排列兩種做法 */
+/* 1.flowt 以前橫向排列的作法，現在不要再用，看得懂以前的人在寫什麼就好 */
+/* 2.flex 現在主流用法 */
+#footerlist {
+    display: flex;
+    /* 與下方版權宣告太近要增加距離，設margin-bottom:20px; */
+    /* 意義等同於從下方的#copyright{}設定margin-top */
+    /* 但通常統一由上方往下設定，避免之後要在中間增加區塊時錯亂 */
+    /* margin-bottom: 20px; */
+}
+
+.footeritem {
+
+    /* border: 1px  solid rgb(212, 29, 29); */
+
+    /* 原本三個區塊都靠左，讓他們均分 */
+    flex: 1;
+    /* 總和佔比 */
+
+    /* 置中 */
+    text-align: center;
+    /* dsshed虛線 */
+    /* solid實線 */
+    /* double雙線，記得設3pt以上才看會看到兩條 */
+    border-right: 3px double green;
+/* 增加綠色邊線高度的做法，增加這塊的padding */
+    padding: 20px 0;
+}
+
+.item2 {
+
+    flex: 2;
+}
+
+/* 如果都要一樣的文字顏色和尺寸，設定在footeritem就好 */
+.footeritem h2 {
+    font-size: 1.2em;
+    color: red;
+    /* 標題與內文之間覺得太開或太密，設定margin */
+    /* 沒設定不代表預設值為0，所以先設m0，再看看要怎麼調整 */
+    margin: 0 0 2px 0;
+/* 增加字距： */
+/* 也可以在內文中加空白鍵，但空兩格以上都會視為一格 */
+    /* letter-spacing: 5px; */
+}
+
+/* 把營業時間的右邊線刪除 */
+/* 指定footeritem裡的最後一個區塊 */
+.footeritem:last-of-type {
+
+    border: none;
+}
+
+.footeritem p {
+    font-size: 0.95em;
+    color: aqua;
+
+    /* 內文之間覺得太開或太密，設定margin */
+    /* 沒設定不代表預設值為0，所以先設m0，再看看要怎麼調整 */
+    margin: 0 0 0px 0;
+}
+/* a、span、small都是行內元素，其他幾乎都是區塊元素 */
+/* 因此如果只打text-align: center;只會在這行內置中不會在區塊內置中 */
+/* 需要加display-block把行內轉區塊 */
+#copyright{
+    text-align: center;
+    background-color: yellow;
+display: block;
+margin-top: 20px;
+
+}
