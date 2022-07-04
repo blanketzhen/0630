@@ -1,4 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700&display=swap');
+
 body {
+/* 到google font抓取字型 */
+/* 這裡採用：Sans非襯線字放在body裡，Serif放在footer的做法 */
+
+    font-family: 'Noto Sans TC', sans-serif;
 
     /* 因為是用外部css，所以抓取上一層的圖片路徑前要加../ */
     background-image: url(../img/bg1.jpeg);
@@ -7,6 +13,7 @@ body {
 
 header {
     height: 90px;
+    /* position: relative; */
 }
 
 #logo {
@@ -26,6 +33,39 @@ header {
     top: 20px;
     left: 20px;
 
+}
+
+#memnav{
+    /* 父層做絕對定位 */
+    position: absolute;
+
+    /* 在header設定relative，再到這裡設定absolute */
+    /* 則可以在header裡定位 */
+    /* 沒設定relative的話會以整個網頁做定位指標，跑到網頁的最下右 */
+    
+    bottom: 0;
+    right: 0;
+    
+
+}
+
+#memnav ul{
+    /* 把表單的豆豆隱藏 */
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+
+#memnav li{
+    float: left;
+    margin: 0 12px;
+}
+
+#memnav ul li a {
+/* 把連結的底線拿掉 */
+    text-decoration: none;
+    color: rgb(0, 119, 204);
 }
 
 /* #banner{ */
@@ -51,6 +91,8 @@ main {
 }
 
 footer {
+
+    font-family: 'Noto Serif TC', serif;
     background-color: rgba(182, 31, 31, 0.211);
     padding: 20px 0;
 
@@ -99,7 +141,9 @@ footer {
     margin: 0 0 2px 0;
 /* 增加字距： */
 /* 也可以在內文中加空白鍵，但空兩格以上都會視為一格 */
-    /* letter-spacing: 5px; */
+    letter-spacing: 5px;
+
+    font-weight: 100;
 }
 
 /* 把營業時間的右邊線刪除 */
