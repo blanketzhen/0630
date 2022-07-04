@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700&display=swap');
 
+/* 如果要在#memnav ul上設定背景顏色 */
+/* 則需要先做以下清除的動作 */
+/* 因為先前在#memnav ul li裡設定了float使區塊抽離漂浮在頁面上 */
+/* float讓ul的範圍關成一條直線(位於在<a>的上方) */
+/* .clr{
+    clear: both;
+} */
+
+
+
 body {
-/* 到google font抓取字型 */
-/* 這裡採用：Sans非襯線字放在body裡，Serif放在footer的做法 */
+    /* 到google font抓取字型 */
+    /* 這裡採用：Sans非襯線字放在body裡，Serif放在footer的做法 */
 
     font-family: 'Noto Sans TC', sans-serif;
 
@@ -13,7 +23,7 @@ body {
 
 header {
     height: 90px;
-    /* position: relative; */
+    position: relative;
 }
 
 #logo {
@@ -32,40 +42,167 @@ header {
     position: relative;
     top: 20px;
     left: 20px;
+}
+
+nav ul {
+    /* 把所有表單的豆豆隱藏 */
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+nav ul a {
+    /* 空格：後代選取器，影響所有後代內容*/
+    text-decoration: none;
+}
+
+#mainnav {
+    /* 主選單 */
+    position: absolute;
+    right: 0;
+    top: 48px;
+    /* border: solid red; */
+    /* 減號前後一定要空格，加乘不用，為避免和程式碼混淆 */
+    /* 讓系統自動計算100%螢幕扣除logo圖片寬度 */
+    width: calc(100% - 300px);
 
 }
 
-#memnav{
+
+#mainnav>ul {
+    /* 大於：子代選取器 只影響兒子一層，再下一層不影響*/
+    /* 讓主選單橫向排列但不影響主選單內的直排 */
+    display: flex;
+}
+
+#mainnav>ul>li {
+    flex: 1;
+    /* border: solid yellow; */
+    /* 如果text-align: center; 寫在這裡，a以外的按鈕處不能按*/
+    /* 所以做在a上 */
+}
+
+#mainnav>ul>li:hover ul {
+    /* 當滑到主選單標題時顯示選單內容 */
+    /* 注意這裡不是設定在a上面，而是li */
+    /* 否則鼠標一離開a選單內容就會消失 */
+    display: block;
+}
+
+#mainnav ul li a { /* 所有的a */
+    /* 影響ul li a以下所有內容 */
+    display: block;
+    text-align: center;
+    color: rgb(0, 56, 0);
+   
+}
+
+#mainnav>ul>li>a{ /* 第一層的ａ */
+    /* 增加主選單標題與選單內容之間的距離 */
+    /* 調整padding後再去#mainnav把整個選單位置往上調 */
+    padding: 10px;
+
+}
+
+#mainnav>ul>li>a:hover{
+    /* 滑到主選單標題時做漸層效果 */
+    background-image: radial-gradient(at center bottom,rgba(255, 255, 255, 0.483),rgba(255, 255, 255, 0)60%);
+}
+
+#mainnav ul ul {
+    /* 主選單內容區塊 */
+    background-color: rgba(255, 255, 255, 0.357);
+    padding: 10px;
+    display: none;
+}
+
+#mainnav ul ul li {
+    /* 主選單內容區塊的列表區塊 */
+    margin: 10px;
+    
+}
+
+#mainnav>ul>li>a {
+    /* 主選單標題的a */
+    /* 影響ul li 的a */
+    /* 只讓主選單標題改成襯線字，以下的選單內容不影響 */
+    font-family: 'Noto Serif TsC', serif;
+    font-weight: 600;
+}
+
+#mainnav ul ul li a {
+    /* 主選單內容的a */
+    /* 影響ul ul li a以下所有內容 */
+    font-size: 0.9em;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    padding: 5px;
+    /* border-bottom: 1px solid green; */
+    
+}
+
+#mainnav ul ul li a:hover{
+    border-bottom: 1px solid green;
+}
+
+
+/* #mainnav ul { */
+/* 把表單的豆豆隱藏 */
+/* list-style: none; */
+/* } */
+
+#memnav {
     /* 父層做絕對定位 */
     position: absolute;
 
     /* 在header設定relative，再到這裡設定absolute */
     /* 則可以在header裡定位 */
     /* 沒設定relative的話會以整個網頁做定位指標，跑到網頁的最下右 */
-    
-    bottom: 0;
+
+    top: 20px;
     right: 0;
-    
+    /* margin: 0px; */
 
 }
 
-#memnav ul{
+#memnav ul {
     /* 把表單的豆豆隱藏 */
-list-style: none;
-margin: 0;
-padding: 0;
+    list-style: none;
+    /* margin: 0; */
+    padding: 0 20px;
+    background-color: rgba(255, 255, 255, 0.344);
+    border-radius: 12px;
+    /* border: solid red; */
+
 }
 
 
-#memnav li{
+
+.clr::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+#memnav ul li {
     float: left;
     margin: 0 12px;
+    /* width: 100px; */
+
 }
 
 #memnav ul li a {
-/* 把連結的底線拿掉 */
+    /* 把連結的底線拿掉 */
     text-decoration: none;
     color: rgb(0, 119, 204);
+
+    /* 這裡要特別注意，如果tac做在ul li裡 */
+    /* 則只是把<a>排列置中在li裡，滑鼠滑到<a>文字外的按鈕區域會無反應 */
+    display: block;
+    text-align: center;
+    /* background-color: rgb(15, 84, 84); */
+    font-size: 0.95em;
 }
 
 /* #banner{ */
@@ -85,9 +222,18 @@ padding: 0;
 
 main {
     /* 固定高，如果文字多到超過高200px，文字會溢出到footer的空間 */
-    height: 200px;
+    /* height: 200px; */
     /* 彈性高 如果文字多到超過高200px，main會自動加長，是較有彈性的作法*/
-    /* min-height: 200px; */
+    min-height: 200px;
+    /* 線性漸層 */
+    /* 方向可以是：to top right 也可以是指定角度60deg */
+    /* 在顏色後面加上百分比可決定該色起始位置 */
+    /* background-image: linear-gradient(60deg,red 30%, yellow 50%, orange 70%); */
+
+    /* 放射狀漸層 */
+    /* 方向如果是從中下則circle at center bottom */
+    /* 如未加circle則是非正圓放射狀 */
+    background-image: radial-gradient(circle at left top, red, yellow, green, blue 80%);
 }
 
 footer {
@@ -123,7 +269,7 @@ footer {
     /* solid實線 */
     /* double雙線，記得設3pt以上才看會看到兩條 */
     border-right: 3px double green;
-/* 增加綠色邊線高度的做法，增加這塊的padding */
+    /* 增加綠色邊線高度的做法，增加這塊的padding */
     padding: 20px 0;
 }
 
@@ -139,8 +285,8 @@ footer {
     /* 標題與內文之間覺得太開或太密，設定margin */
     /* 沒設定不代表預設值為0，所以先設m0，再看看要怎麼調整 */
     margin: 0 0 2px 0;
-/* 增加字距： */
-/* 也可以在內文中加空白鍵，但空兩格以上都會視為一格 */
+    /* 增加字距： */
+    /* 也可以在內文中加空白鍵，但空兩格以上都會視為一格 */
     letter-spacing: 5px;
 
     font-weight: 100;
@@ -161,13 +307,14 @@ footer {
     /* 沒設定不代表預設值為0，所以先設m0，再看看要怎麼調整 */
     margin: 0 0 0px 0;
 }
+
 /* a、span、small都是行內元素，其他幾乎都是區塊元素 */
 /* 因此如果只打text-align: center;只會在這行內置中不會在區塊內置中 */
 /* 需要加display-block把行內轉區塊 */
-#copyright{
+#copyright {
     text-align: center;
     background-color: yellow;
-display: block;
-margin-top: 20px;
+    display: block;
+    margin-top: 20px;
 
 }
