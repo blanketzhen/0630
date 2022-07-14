@@ -1,0 +1,146 @@
+main {
+
+    display: flex;
+    /* 所有內容靠上對齊 */
+    align-items: flex-start;
+    margin: 20px 0;
+
+}
+
+#news {
+    background-color: rgba(255, 255, 255, 0.331);
+    /* flex: 1; */
+    /* 減號前後務必要空格 */
+    /* 60px=news(margin10+padding20)x2 */
+    flex: 0 0 calc(30% - 60px);
+    margin: 0 10px;
+    padding: 20px;
+
+}
+
+#news ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#news ul li {
+    color: rgb(0, 75, 0);
+    border-bottom: 1px dashed green;
+    margin-bottom: 10px;
+    /* 把文字內縮，比虛線再往內縮 */
+    padding: 0px 5px 8px 85px;
+    font-size: 0.9em;
+    /* 作為#news ul li time的定位點 */
+    position: relative;
+}
+
+#news ul li time {
+    position: absolute;
+    top: 0;
+    left: 5px;
+}
+
+.Hot::before {
+    content: "Hot";
+    background-color: red;
+    color: white;
+    font-size: 8px;
+    padding: 0 6px;
+    border-radius: 5px;
+    /* before是行內元素所以margin;上下無效 */
+    /* position: relative; */
+    /* top: -3px; */
+    display: inline-block;
+    transform: scale(0.8) rotate(-10deg);
+}
+
+.promote::before {
+    content: "促銷";
+    background-color: yellow;
+    color: red;
+    font-size: 8px;
+    padding: 0 6px;
+    border-radius: 5px;
+    /* before是行內元素所以margin;上下無效 */
+    /* position: relative; */
+    /* top: -3px; */
+    display: inline-block;
+    /* translate可作位移，概念類似於position: relative; */
+    transform: translate(3px, -5px) scale(0.8) rotate(-10deg);
+
+}
+
+#ca {
+    /* background-color: rgba(255, 255, 255, 0.331); */
+    /* 這個display: flex;是要配合上方設定的display:flex*/
+    flex: 7;
+    /* 這個display: flex;是要給底下ca img做排列的與flex:70%無關 */
+    display: flex;
+    /* 超出100%可以折行 */
+    /* 設定後原本.caItem img 4張圖橫向排列，可折行 */
+    flex-wrap: wrap;
+
+
+
+}
+
+.caItem {
+    flex: 0 0 calc(50% - 30px);
+    background-color: rgba(255, 255, 255, 0.3);
+    /* 圖片之間的距離 */
+    margin: 0 10px 10px 0;
+    /* padding: 10px; */
+    padding: 10px;
+}
+
+.caItem h2 {
+    font-family: 'Noto Serif TC';
+    margin: 20px 20px 20px;
+    font-size: 1.3em;
+    letter-spacing: 0.2em;
+}
+
+.caItem p {
+    letter-spacing: 0.2em;
+    line-height: 1em;
+    text-align: justify;
+}
+
+.caItem img {
+    width: 100%;
+
+}
+
+@media (max-width:600px) {
+    main {
+        display: block;
+    }
+
+    #news {
+        margin: 20px;
+    }
+
+    #ca {
+        margin-left: 10px;
+        display: block;
+    }
+
+}
+
+@media(max-width:960px) and (min-width:601px) {
+    #news ul li {
+        padding: 22px 0 10px 0;
+    }
+}
+
+/* 大於全螢幕時caItem橫向排列 */
+@media(min-width:1367px) {
+    #news {
+        flex: 0 0 calc()
+    }
+
+    .caItem {
+        flex: 1;
+    }
+}

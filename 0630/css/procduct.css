@@ -1,0 +1,140 @@
+main{
+    display: flex;
+}
+#productMenu{
+    width: 162px;
+    margin: 0 10px;
+}
+
+
+
+#productMenu>ul>li>a{
+   background-image: url(../img/pruductMenuBg.png);
+   
+   /* 寫了display: block;後會把a的寬高打開，並且預設是repeat,所以會是橫向重複 */
+   /* 必須設寬高去縮小a的範圍，因為如果設no-repeat，則視覺上縮小，實際整行都是a */
+   display: block;
+   /* width: 162px; */
+   height: 40px;
+   color: white;
+   /* 單行左右置中 */
+   text-align: center;
+   /* 單行上下置中的方式：設定line-height跟height一樣的高度即可 */
+   /* 僅限於單行的快速解法！雙行以上不行 */
+   /* 但這裡line-height: 40px後發現字偏下的原因是 */
+   /* 可以先設一個border看圖片的範圍，會發現圖片總高度包含到圖片下方的陰影 */
+   /* 因此視覺上字在木板上會偏下，這時候做細部微調縮減px讓自往上即可 */
+   /* line-height: 40px; */
+   line-height: 38px;
+    /* 字距 */
+   letter-spacing: 0.2em;
+}
+
+#productMenu ul ul{
+    padding: 5px;
+    /* margin-bottom:5px ; */
+    /* background-color: rgba(255, 255, 255, 0.32); */
+}
+
+/* 子選單內容 */
+#productMenu ul ul li{
+    /* width: 162px; */
+    margin: 12px;  
+}
+
+#productMenu ul ul li a{
+    color: black;
+    display: block;
+    text-align: center;
+    margin: 0 12px;
+    padding: 5px;
+    border-bottom: 1px dashed white;
+    
+}
+
+
+#productMenu ul ul li a.nowPage::before{
+content: '';
+border: 8px solid transparent;
+border-left-color: white;
+width: 0;
+height: 0;
+display: inline-block;
+
+}
+
+
+#productList{
+    /* 減號前後一定要空格 */
+    flex: 0 0 calc(100% - 182px);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.productItem {
+    /* margin的右10和左右padding10 */
+    flex: 0 0 calc(25% - 30px);
+    /* 擴張佔比 壓縮佔比 基準寬 */
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    
+}
+
+.productItem:hover{
+    background-color: rgba(255, 255, 255, 0.329);
+    transition: 1s;
+}
+.productItem img{
+    width: 100%
+}
+
+
+.productItem p::before{
+
+    color: white;
+    border-radius:20px ;
+    padding: 0 12px;
+    font-size: 10px;
+    margin-right: 12px;
+
+
+}
+
+.productItem p:nth-of-type(1)::before{
+content: '說明'; 
+background-color: rgb(51, 186, 143);
+}
+.productItem p:nth-of-type(2)::before{
+content: '成份';
+background-color: rgb(148, 78, 202);
+
+}
+
+
+@media(max-width:960px) and (min-width:661px) {
+    .productItem{
+
+        flex: 0 0 calc(33% - 30px);
+    }
+
+}
+@media(max-width:660px) {
+    #productMenu{
+
+        display: none;
+    }
+
+    #productList{
+        flex: 1;
+    }
+    .productItem{
+
+        flex: 0 0 calc(100% - 30px);
+    }
+
+}
+
+
+
